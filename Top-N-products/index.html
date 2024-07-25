@@ -1,13 +1,67 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Top Products</title>
+  <style>
+    .product {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Top Products</h1>
+  <div id="products"></div>
+
+  <script>
+    // Sample product data
+    const products = [
+      { name: 'Product 1', image: 'product1.jpg', price: 19.99 },
+      { name: 'Product 2', image: 'product2.jpg', price: 29.99 },
+      { name: 'Product 3', image: 'product3.jpg', price: 14.99 },
+      { name: 'Product 4', image: 'product4.jpg', price: 24.99 },
+      { name: 'Product 5', image: 'product5.jpg', price: 9.99 },
+      { name: 'Product 6', image: 'product6.jpg', price: 39.99 },
+      { name: 'Product 7', image: 'product7.jpg', price: 12.99 },
+      { name: 'Product 8', image: 'product8.jpg', price: 34.99 },
+      { name: 'Product 9', image: 'product9.jpg', price: 7.99 },
+      { name: 'Product 10', image: 'product10.jpg', price: 44.99 }
+    ];
+
+    // Function to display top N products
+    function displayTopProducts(n) {
+      const productsContainer = document.getElementById('products');
+      productsContainer.innerHTML = '';
+
+      for (let i = 0; i < n; i++) {
+        if (i >= products.length) break;
+
+        const product = products[i];
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+
+        const imageElement = document.createElement('img');
+        imageElement.src = product.image;
+        productElement.appendChild(imageElement);
+
+        const nameElement = document.createElement('h3');
+        nameElement.textContent = product.name;
+        productElement.appendChild(nameElement);
+
+        const priceElement = document.createElement('p');
+        priceElement.textContent = `$${product.price.toFixed(2)}`;
+        productElement.appendChild(priceElement);
+
+        productsContainer.appendChild(productElement);
+      }
+    }
+
+    // Display the top 5 products
+    displayTopProducts(5);
+  </script>
+</body>
 </html>
